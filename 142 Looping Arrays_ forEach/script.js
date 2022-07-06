@@ -23,7 +23,7 @@ movements.forEach(function(movement){
     if(movement > 0) {
         console.log(`Your deposited ${movement}`)
     } else {
-        console.log(`Your withdarw ${Math.abs(movement)}`)
+        console.log(`Your withdraw ${Math.abs(movement)}`)
     }
 })
 

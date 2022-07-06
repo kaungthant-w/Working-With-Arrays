@@ -25,7 +25,7 @@ console.log(mimi);
 const arr1 = ["a", "b", "k", "G", "F"]
 const arr2 = ["h", "i", "j", "k","F"]
 console.log(arr1.concat(arr2))
-// console.log([..arr1 , ..arr2]);;
+// console.log([..arr1 , ..arr2]);
 
 //join having
 console.log(arr.join("🚭 "));

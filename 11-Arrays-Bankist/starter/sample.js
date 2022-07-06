@@ -1,5 +1,3 @@
-
-
 'use strict';
 
 /////////////////////////////////////////////////
@@ -73,7 +71,7 @@ const displayMovements = function(movements) {
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}"> ${i+1} ${type} </div>
-        <div class="movements__value">${mov}$</div>
+        <div class="movements__value">${mov}€</div>
       </div>
     `;
 
@@ -90,7 +88,7 @@ displayMovements(account1.movements);
 // return username;
 // console.log(createUserName("Steven Thomas Williams"));
 
-const createUserName = function(accs) {
+const createUserNames = function(accs) {
 
   accs.forEach(function(acc){
     acc.username = acc.owner.toLowerCase().split(" ").map(name => name[0]).join('');
@@ -99,8 +97,27 @@ const createUserName = function(accs) {
 
 }
 
-createUserName(accounts);
-console.log(createUserName(accounts));
+createUserNames(accounts);
+// console.log(createUserName(accounts));
 
 // console.log(account1) 
 // console.log(accounts);
+
+
+// balance
+const calcDisplayBalance = function(movements) {
+  const balance = movements.reduce((mov, acc) => mov + acc, 0);
+
+  labelBalance.textContent = `${balance}€`;
+}
+
+calcDisplayBalance(account1.movements);
+
+//summary
+const calcDisplaySummary = function(movements) {
+  const incomes = movements.filter(mov => mov > 0).reduce((mov, acc) => mov + acc, 0);
+
+  labelSumIn.textContent = `${incomes}€`;
+}
+
+calcDisplaySummary(account1.movements);
