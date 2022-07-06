@@ -92,7 +92,6 @@ const createUserNames = function(accs) {
     acc.username = acc.owner.toLowerCase().split(" ").map(name => name[0]).join('');
   });
   
-
 }
 
 createUserNames(accounts);
@@ -108,9 +107,18 @@ calcDisplayBalance(account1.movements);
 
 //summary
 const calcDisplaySummary = function(movements) {
-  const incomes = movements.filter(mov => mov > 0).reduce((mov, acc) => mov + acc, 0);
 
+  // incomes
+  const incomes = movements.filter(mov => mov > 0).reduce((mov, acc) => mov + acc, 0);
   labelSumIn.textContent = `${incomes}€`;
+
+  //outcomes
+  const outcomes = movements.filter(mov => mov < 0).reduce((mov, acc) => mov + acc, 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)}€`;
+
+  //interest
+  const interest = movements.filter(mov => mov > 0).map(deposit => (deposit * 1.2) / 100).filter(mov => mov >= 1).reduce((mov, acc) => mov + acc, 0);
+  labelSumInterest.textContent = `${interest}€`;
 }
 
 calcDisplaySummary(account1.movements);
