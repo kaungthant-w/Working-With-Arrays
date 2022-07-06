@@ -80,8 +80,6 @@ const displayMovements = function(movements) {
 };
 
 displayMovements(account1.movements);
-// console.log(containerMovements.innerHTML);
-
 
 // const user = "Steven Thomas Williams";
 // const username = user.toLowerCase().split(" ").map(name => name[0]).join("");
@@ -98,11 +96,6 @@ const createUserNames = function(accs) {
 }
 
 createUserNames(accounts);
-// console.log(createUserName(accounts));
-
-// console.log(account1) 
-// console.log(accounts);
-
 
 // balance
 const calcDisplayBalance = function(movements) {
