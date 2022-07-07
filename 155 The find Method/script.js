@@ -34,10 +34,10 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const firstWithdrawal = movements.find(mov => mov < 0);
 console.log(firstWithdrawal);
 
-console.log(accounts);
+// console.log(accounts);
 
 const account = accounts.find(acc => acc.owner = "Steven Thomas Williams");
 console.log(account);
-console.log(account.owner)
+console.log(account.owner);
 console.log(account.movements.filter(mov => mov > 0));
 console.log(account.pin);

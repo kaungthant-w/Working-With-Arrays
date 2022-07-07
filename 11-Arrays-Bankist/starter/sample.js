@@ -79,12 +79,7 @@ const displayMovements = function(movements) {
   });
 };
 
-displayMovements(account1.movements);
-
-// const user = "Steven Thomas Williams";
-// const username = user.toLowerCase().split(" ").map(name => name[0]).join("");
-// return username;
-// console.log(createUserName("Steven Thomas Williams"));
+// displayMovements(account1.movements);
 
 const createUserNames = function(accs) {
 
@@ -98,27 +93,68 @@ createUserNames(accounts);
 
 // balance
 const calcDisplayBalance = function(movements) {
-  const balance = movements.reduce((mov, acc) => mov + acc, 0);
+  const balance = movements.reduce((acc, mov) =>  acc + mov, 0);
 
   labelBalance.textContent = `${balance}€`;
 }
 
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
 //summary
-const calcDisplaySummary = function(movements) {
+const calcDisplaySummary = function(acc) {
 
   // incomes
-  const incomes = movements.filter(mov => mov > 0).reduce((mov, acc) => mov + acc, 0);
+  const incomes = acc.movements.filter(mov => mov > 0).reduce((acc, mov) =>  acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
   //outcomes
-  const outcomes = movements.filter(mov => mov < 0).reduce((mov, acc) => mov + acc, 0);
+  const outcomes = acc.movements.filter(mov => mov < 0).reduce((acc, mov) =>  acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outcomes)}€`;
 
   //interest
-  const interest = movements.filter(mov => mov > 0).map(deposit => (deposit * 1.2) / 100).filter(mov => mov >= 1).reduce((mov, acc) => mov + acc, 0);
+  const interest = acc.movements.filter(mov => mov > 0).map(deposit => (deposit * 1.2) / 100).filter(mov => mov >= 1).reduce((acc, mov) =>  acc + mov, 0);
   labelSumInterest.textContent = `${interest}€`;
 }
 
-calcDisplaySummary(account1.movements);
+// calcDisplaySummary(account1.movements);
+
+//handler
+let currentAccount;
+btnLogin.addEventListener("click", function(e) {
+  //prevent form from submitting
+  e.preventDefault();
+
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
+  // console.log(currentAccount);
+
+  if(currentAccount?.pin === Number(inputLoginPin.value)) {
+      //display UI and message
+      labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(" ")[0]}`;
+      containerApp.style.opacity = 100;
+
+      //clear input fields
+      inputLoginUsername.value = inputLoginPin.value = "";
+      inputLoginPin.blur();
+
+      //display movements
+      displayMovements(currentAccount.movements);
+
+      //display balance
+      calcDisplayBalance(currentAccount.movements);
+
+      //display summary
+      calcDisplaySummary(currentAccount);
+  }
+
+  
+});
+
+
+
+
+
+// ========================================
+// const user = "Steven Thomas Williams";
+// const username = user.toLowerCase().split(" ").map(name => name[0]).join("");
+// return username;
+// console.log(createUserName("Steven Thomas Williams"));
