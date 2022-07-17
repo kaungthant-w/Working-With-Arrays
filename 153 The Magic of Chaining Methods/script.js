@@ -2,9 +2,9 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // PIPELINE
 const eurTousd = 1.1;
-const totalDepositeUSD = movements.filter(mov => mov > 0).
-map(mov => mov * eurTousd).
-reduce((mov, acc) => mov + acc, 0);
+const totalDepositeUSD = movements.filter(mov => mov > 0)
+.map(mov => mov * eurTousd)
+.reduce((mov, acc) => mov + acc, 0);
 
 console.log(`Total Deposites => ${totalDepositeUSD}`);
 

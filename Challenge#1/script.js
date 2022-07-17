@@ -28,11 +28,11 @@ console.log(addUpdate);
 
 const salery = [150000, 260000, 300000, 700000];
 
-const saleryYear = salery.map(sa => sa+2000);
+const saleryYear = salery.map(sa => sa + 2000);
 console.log(saleryYear);
 
 const higherSalery = saleryYear.filter(sa => sa > 300000);
 console.log(higherSalery);
 
-const totalSalery = saleryYear.reduce((sa,i) => sa+i);
+const totalSalery = saleryYear.reduce((sa,i) => sa + i);
 console.log(totalSalery);
